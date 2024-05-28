@@ -77,6 +77,8 @@ public class TestCases {
       System.out.println("Start Test case: testCase02");
       navigateToHomePage(); 
       clickTab("Movies");
+      String sectionName=("/html/body/ytd-app/div[1]/ytd-page-manager/ytd-browse[3]/ytd-two-column-browse-results-renderer/div[1]/ytd-section-list-renderer/div[2]/ytd-item-section-renderer[2]/div[3]/ytd-shelf-renderer/div[1]/div[1]/div/h2/div[1]/div/a/span");
+      assert sectionName.contains("Top selling") : "does not contain sectionName";
       clickScrollRightButtonMultipleTimes(3,"/html/body/ytd-app/div[1]/ytd-page-manager/ytd-browse[2]/ytd-two-column-browse-results-renderer/div[1]/ytd-section-list-renderer/div[2]/ytd-item-section-renderer[2]/div[3]/ytd-shelf-renderer/div[1]/div[2]/yt-horizontal-list-renderer/div[3]/ytd-button-renderer/yt-button-shape/button/yt-touch-feedback-shape/div");
       WebElement movie = findMovie("//*[@id='items']/ytd-grid-movie-renderer[16]");
       String maturityRating = getMaturityRating(movie);
@@ -89,6 +91,8 @@ public class TestCases {
     	 System.out.println("Start Test case: testCase03");
     	navigateToHomePage(); 
     	clickTab("Music");
+    	String sectionName=("//*[@id='title-container']/h2");
+    	assert sectionName.contains("India's Biggest Hits") : "does not contain sectionName";
         clickScrollRightButtonMultipleTimes(3, "//*[@id='right-arrow']/ytd-button-renderer/yt-button-shape/button");
         String playlistName = getPlaylistName("//*[@id='items']/ytd-compact-station-renderer[11]/div/a/h3");
         System.out.println("Playlist Name: " + playlistName);
@@ -101,6 +105,8 @@ public class TestCases {
       
       System.out.println("Start Test case: testCase04");
       clickTab("News");
+      String sectionName=("/html/body/ytd-app/div[1]/ytd-page-manager/ytd-browse[4]/ytd-two-column-browse-results-renderer/div[1]/ytd-rich-grid-renderer/div[6]/ytd-rich-section-renderer[2]/div/ytd-rich-shelf-renderer/div[1]/div[1]/div[1]/h2/div/div[1]/span");
+      assert sectionName.contains("Latest news posts") : "does not contain sectionName";
       getNewsDetails();
       
       System.out.println("end Test of cases");
@@ -141,9 +147,10 @@ private String getGenre(WebElement movie) {
     return movie.findElement(By.xpath(".//span[@class='grid-movie-renderer-metadata style-scope ytd-grid-movie-renderer']")).getText();
 }
 
-
-    
-
+private String verifySectionTab(String path) {
+	WebElement nametab=driver.findElement(By.xpath(path));
+	 return nametab.getText();
+}
 // Method to click a tab by its title
 public void clickTab(String title) {
     WebElement tab = driver.findElement(By.xpath("//a[@title='" + title + "']"));

@@ -27,7 +27,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     implementation 'org.seleniumhq.selenium:selenium-java:4.13.0'
-    testImplementation 'org.testng:testng:7.4.0'
+    implementation 'org.testng:testng:7.4.0'
     implementation 'org.apache.poi:poi:5.2.4'
     implementation 'org.apache.poi:poi-ooxml:5.2.4'
     
